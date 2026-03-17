@@ -55,7 +55,7 @@ export function Navbar() {
           </div>
           <div className="min-w-0">
             <span className={cn("text-sm sm:text-base md:text-xl font-bold block text-white truncate")}>
-              PINGUIS-SMS-FOLLOWERS
+              PINGUIS SMS FOLLOWERS
             </span>
             {!isScrolled && (
               <span className="text-[9px] sm:text-xs md:text-xs text-blue-200 hidden sm:block font-medium truncate">
