@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>A PASO FIRME</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            color: black;
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("img/fondo.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .logo-header {
+            width: 90px;
+            height: auto;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 40px;
+            letter-spacing: 3px;
+        }
+
+        .header-text p {
+            margin: 5px 0 0 0;
+        }
+
+        /* MENU */
+
+        nav {
+            background: #111;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #aaa;
+        }
+
+        /* TITULO */
+
+        .titulo {
+            text-align: center;
+            font-size: 35px;
+            padding: 40px 0 10px 0;
+        }
+
+        /* CONTENEDOR */
+
+        .container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* BUSCADOR */
+
+        .search {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search input {
+            padding: 12px;
+            width: 320px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        /* MARCAS */
+
+        .marcas {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .logo {
+            width: 90px;
+            margin: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        /* GRID PRODUCTOS */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        /* CARD */
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            background: white;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* TAG */
+
+        .tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: black;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+
+        /* PRECIO */
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        /* TALLES */
+
+        .talles {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* BOTON */
+
+        .btn {
+            background: black;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #333;
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            font-size: 22px;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+        }
+    </style>
+
+    <script>
+
+        function buscar() {
+
+            let input = document.getElementById("buscar").value.toLowerCase();
+            let cards = document.getElementsByClassName("card");
+
+            for (let i = 0; i < cards.length; i++) {
+
+                let texto = cards[i].innerText.toLowerCase();
+
+                if (texto.includes(input)) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
+
+            }
+
+        }
+
+        function filtrar(marca) {
+
+            let cards = document.getElementsByClassName("card");
+
+            for (let i = 0; i < cards.length; i++) {
+
+                if (marca == "all") {
+                    cards[i].style.display = "block";
+                }
+                else if (cards[i].classList.contains(marca)) {
+                    cards[i].style.display = "block";
+                }
+                else {
+                    cards[i].style.display = "none";
+                }
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <img src="img/logo.png" class="logo-header">
+
+        <div class="header-text">
+            <h1>A PASO FIRME</h1>
+            <p>Catálogo mayorista de zapatillas</p>
+        </div>
+
+    </header>
+
+    <nav>
+
+        <a href="inicio.html">Inicio</a>
+        <a href="index.html">Zapatillas</a>
+        <a href="comprar.html">Cómo comprar</a>
+        <a href="envios.html">Envíos</a>
+
+    </nav>
+
+    <h2 class="titulo">ZAPATILLAS</h2>
+
+    <div class="container">
+
+        <div class="search">
+
+            <input type="text" id="buscar" onkeyup="buscar()" placeholder="Buscar zapatilla...">
+
+        </div>
+
+        <div class="marcas">
+
+            <img src="img/nike.png" class="logo" onclick="filtrar('nike')">
+            <img src="img/vans.png" class="logo" onclick="filtrar('vans')">
+            <img src="img/adidas.png" class="logo" onclick="filtrar('adidas')">
+            <img src="img/dc.png" class="logo" onclick="filtrar('dc')">
+
+        </div>
+
+        <div class="grid">
+
+            <!-- aquí siguen todas tus cards exactamente igual -->
+            <!-- NIKE -->
+
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan high grey.jpg">
+
+                <h3>JORDAN MID HIGH GREY</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan high grey">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid blanca negra.jpg">
+
+                <h3>JORDAN MID BLANCA NEGRA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid blanca negra">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid dior blanca.jpg">
+
+                <h3>JORDAN MID DIOR BLANCA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid dior blanca">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid dios gris.jpg">
+
+                <h3>JORDAN MID DIOR</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid dior gris">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid grey black.jpg">
+
+                <h3>JORDAN MID GREY BLACK</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 39</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid grey black">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid grey fog.jpg">
+
+                <h3>JORDAN MID GREY FOG</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 39 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid grey fog">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid gris negro.jpg">
+
+                <h3>JORDAN MID GRIS NEGRO</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid gris negro">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid gris 2.0.jpg">
+
+                <h3>JORDAN MID GRIS 2.0</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid gris 2.0">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid gris.jpg">
+
+                <h3>JORDAN MID GRIS</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid gris">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid negro rojo.jpg">
+
+                <h3>JORDAN MID NEGRO ROJO</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid negro rojo">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan mid panda.jpg">
+
+                <h3>JORDAN MID PANDA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan mid panda">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan gris negro.jpg">
+
+                <h3>JORDAN GRIS NEGRO</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan gris negro">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan low tricolor.jpg">
+
+                <h3>JORDAN LOW TRICOLOR</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan low tricolor">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan niquel.jpg">
+
+                <h3>JORDAN NIQUEL</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan niquel">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan panda.jpg">
+
+                <h3>JORDAN PANDA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan panda">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan rojo negro.jpg">
+
+                <h3>JORDAN ROJO NEGRO</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan rojo negro">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan blanca negra.jpg">
+
+                <h3>JORDAN BLANCA NEGRA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan blanca negra">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan blanca negra.jpg">
+
+                <h3>JORDAN NEGRA BLANCA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan blanca negra">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike jordan low black.jpg">
+
+                <h3>JORDAN LOW BLACK</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan low black">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk panda.jpg">
+
+                <h3>DUNK PANDA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las DUNK PANDA">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk grey fog.jpg">
+
+                <h3>DUNK GREY FOG</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las DUNK GREY FOG">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk triple white.jpg">
+
+                <h3>DUNK TRIPLE WHITE</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las DUNK TRIPLE WHITE">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk94 black red.jpg">
+
+                <h3>DUNK 94 BLACK/RED</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las dunk94blackred">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk black gum.jpg">
+
+                <h3> DUNK BLACK GUM</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk black gum">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk pistacho reverse.jpg">
+
+                <h3>DUNK PISTACHO REVERSE</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las dunk pistacho reverse">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk bordo.jpg">
+
+                <h3>DUNK BORDO</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk bordo">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk cacao.jpg">
+
+                <h3>DUNK CACAO</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 38</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk cacao">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk city of love.jpg">
+
+                <h3>DUNK CITY OF LOVE</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 35 36</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk city of love">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk gliter jean.jpg">
+
+                <h3>DUNK GLITER JEAN</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 35 36</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk gliter jean">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk la dodgers.jpg">
+
+                <h3>DUNK LA DODGERS</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk la dodgers">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk lv clasica.jpg">
+
+                <h3>DUNK LV CLASICA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk lv clasica">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk magestic.jpg">
+
+                <h3>DUNK MAGESTIC</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk magestic">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk midnight.jpg">
+
+                <h3>DUNK MIDNIGHT</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk midnight">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk negras 2.0.jpg">
+
+                <h3>DUNK NEGRAS 2.0</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 43 al 48</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk negras 2.0">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk negras.jpg">
+
+                <h3>DUNK NEGRAS</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk negras">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk night.jpg">
+
+                <h3>DUNK NIGHT</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk night">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk total black.jpg">
+
+                <h3>DUNK TOTAL BLACK</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk total black">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk versity green.jpg">
+
+                <h3>DUNK VERSITY GREEN</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 38</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk versity green">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk white navy.jpg">
+
+                <h3>DUNK WHITE NAVY</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk white navy">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike dunk94 white.jpg">
+
+                <h3>DUNK 94 WHITE</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike dunk94 white">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike travis scott black phantom.jpg">
+
+                <h3>TRAVIS SCOTT BLACK PHANTOM</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 38</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike travis scott black phantom">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike travis scott mocha reverse.jpg">
+
+                <h3>TRAVIS SCOTT MOCHA REVERSE</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike travis scott mocha reverse">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike travis scott mocha.jpg">
+
+                <h3>TRAVIS SCOTT MOCHA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 34 al 38</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike travis scott mocha">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force beige 2.0.jpg">
+
+                <h3>AIR FORCE BEIGE 2.0</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force beige 2.0">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force beige.jpg">
+
+                <h3>AIR FORCE BEIGE</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force beige">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force blancas 2.0.jpg">
+
+                <h3>AIR FORCE BLANCAS 2.0</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force blancas 2.0">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force blancas.jpg">
+
+                <h3>AIR FORCE BLANCAS</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force blancas">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force chumky laces.jpg">
+
+                <h3>AIR FORCE CHUMKY LACES</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force chumky laces">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force tricol3r.jpg">
+
+                <h3>AIR FORCE TRICOLOR 2.0</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force tricolor 2.0">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force grey black.jpg">
+
+                <h3>AIR FORCE GREY BLACK</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force grey black">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force grey.jpg">
+
+                <h3>AIR FORCE GREY</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force grey">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force gris blanca.jpg">
+
+                <h3>AIR FORCE GRIS BLANCA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force gris blanca">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force gris negra.jpg">
+
+                <h3>AIR FORCE GRIS NEGRA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force gris negra">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force negras celeste.jpg">
+
+                <h3>AIR FORCE NEGRAS CELESTE</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force negras celeste">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force negras 2.0.jpg">
+
+                <h3>AIR FORCE NEGRAS 2.0</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force negras 2.0">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force tricol3r.jpg">
+
+                <h3>AIR FORCE TRICOLOR 2.0</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike jordan low black">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force panda.jpg">
+
+                <h3>AIR FORCE PANDA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force panda">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force stussy.jpg">
+
+                <h3>AIR FORCE STUSSY</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force stussy">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force supreme blanca.jpg">
+
+                <h3>AIR FORCE SUPREME BLANCA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force supreme blanca">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force supreme negra.jpg">
+
+                <h3>AIR FORCE SUPREME NEGRA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force supreme negra">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force total black.jpg">
+
+                <h3>AIR FORCE TOTAL BLACK</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force total black">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force tricolor.jpg">
+
+                <h3>AIR FORCE TRICOLOR</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force tricolor">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force white navy.jpg">
+
+                <h3>AIR FORCE WHITE NAVY</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force white navy">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike air force grey fog.jpg">
+
+                <h3>AIR FORCE GREY FOG</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike air force grey fog">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card nike">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/nike aire force negras.jpg">
+
+                <h3>AIR FORCE NEGRA</h3>
+
+                <p class="price">$50.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las nike aire force negras">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+
+            <!-- VANS -->
+
+            <div class="card vans">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/vans knu.jpg">
+
+                <h3>VANS KNU SKOOL</h3>
+
+                <p class="price">$40.000</p>
+
+                <p class="talles">Talles 34 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las vans knu skool">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card vans">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/vans knu negras.jpg">
+
+                <h3>VANS KNU NEGRAS</h3>
+
+                <p class="price">$40.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las vans knu negras">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card vans">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/vans knu blancas.jpg">
+
+                <h3>VANS KNU BLANCAS</h3>
+
+                <p class="price">$40.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las vans knu blancas">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card vans">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/vans hylane blancas.jpg">
+
+                <h3>VANS HYLANE BLANCAS</h3>
+
+                <p class="price">$45.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las vans hylane blancas">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <!-- ADIDAS -->
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adi2000 negras.jpg">
+
+                <h3>ADI2000 NEGRAS</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adi2000 negras">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adi2000 gris.jpg">
+
+                <h3>ADI2000 GRIS</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adi2000 gris">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adi2000 blancas.jpg">
+
+                <h3>ADI2000 BLANCAS</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adi2000 blancas">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adi2000 total black.jpg">
+
+                <h3>ADI2000 TOTAL BLACK</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adi2000 total black">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adidas campus bad bunny negras.jpg">
+
+                <h3>ADIDAS CAMPUS BADBUNNY NEGRAS</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adidas campus bad bunny negras">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adidas campus badbunny clasicas.jpg">
+
+                <h3>ADIDAS CAMPUS BADBUNNY CLASICAS</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adidas campus badbunny clasicas">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adidas forum blanca azul.jpg">
+
+                <h3>ADIDAS FORUM BLANCA AZUL</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 34 al 37</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adidas forum blanca azul">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adidas forum blanca celeste.jpg">
+
+                <h3>ADIDAS FORUM BLANCA CELESTE</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 34 al 39</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adidas forum blanca celeste">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adidas forum blanca gris.jpg">
+
+                <h3>ADIDAS FORUM BLANCA GRIS</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adidas forum blanca gris">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adidas forum blanca violeta.jpg">
+
+                <h3>ADIDAS FORUM BLANCA VIOLETA</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 34 al 39</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adidas forum blanca violeta">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adidas forum blanca.jpg">
+
+                <h3>ADIDAS FORUM BLANCA </h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adidas forum blanca ">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card adidas">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/adidas forum negras.jpg">
+
+                <h3>ADIDAS FORUM NEGRAS</h3>
+
+                <p class="price">$47.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las adidas forum negras">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <!-- DC -->
+
+            <div class="card dc">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/dc shoes negras.jpg">
+
+                <h3>DC SHOES NEGRAS</h3>
+
+                <p class="price">$45.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las DC SHOES NEGRAS">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card dc">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/dc shoes negras 2.0.jpg">
+
+                <h3>DC SHOES NEGRAS 2.0</h3>
+
+                <p class="price">$45.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las DC SHOES NEGRAS 2.0">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card dc">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/dc shoes clasicas.jpg">
+
+                <h3>DC SHOES NEGRAS</h3>
+
+                <p class="price">$45.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las DC SHOES NEGRAS">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card dc">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/dc shoes slayer lila.jpg">
+
+                <h3>DC SHOES SLAYER LILA</h3>
+
+                <p class="price">$45.000</p>
+
+                <p class="talles">Talles 34 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las dc shoes slayer lila">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card dc">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/dc shoes total black.jpg">
+
+                <h3>DC SHOES TOTAL BLACK</h3>
+
+                <p class="price">$45.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las dc shoes total black">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="card dc">
+
+                <div class="tag">NUEVO</div>
+
+                <img src="img/dc shoes blancas.jpg">
+
+                <h3>DC SHOES BLANCAS</h3>
+
+                <p class="price">$45.000</p>
+
+                <p class="talles">Talles 38 al 43</p>
+
+                <a class="btn" href="https://wa.me/5493758434182?text=Hola quiero las dc shoes blancas">
+                    Comprar por WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        <h2>Compra mayorista</h2>
+        <p>Mínimo 3 unidades combinables</p>
+
+    </footer>
+
+    <a class="whatsapp" href="https://wa.me/5493758434182">💬</a>
+
+</body>
+
+</html>

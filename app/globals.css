@@ -26,9 +26,6 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   overflow-x: hidden;
 }
@@ -132,4 +129,170 @@ html {
   /* Asegurar que los hijos estén en línea */
   width: max-content;
   /* Permitir que el contenido crezca */
+}
+
+/* ESTILOS GLOBALES MIGRADOS DE LA PÁGINA ESTÁTICA */
+body {
+    font-family: Arial, sans-serif;
+    color: black;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("/img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* HEADER */
+.landing-header {
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.logo-header {
+    width: 90px;
+    height: auto;
+}
+
+.header-text {
+    text-align: left;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 40px;
+    letter-spacing: 3px;
+}
+
+.header-text p {
+    margin: 5px 0 0 0;
+}
+
+/* MENU */
+nav {
+    background: #111;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 20px;
+    font-weight: bold;
+}
+
+nav a:hover, nav a.active {
+    color: #aaa;
+}
+
+/* TITULO */
+.titulo {
+    text-align: center;
+    font-size: 35px;
+    padding: 40px 0 10px 0;
+}
+
+/* CONTENEDOR */
+.container-main {
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* BUSCADOR */
+.search-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.search-area input {
+    padding: 12px;
+    width: 320px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+/* MARCAS */
+.marcas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.logo-brand {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.logo-brand:hover, .logo-brand.active {
+    transform: scale(1.1);
+}
+
+/* GRID PRODUCTOS */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* CUSTOM SETTINGS FOR NEXT CARD */
+.custom-card-wrapper {
+    transition: 0.2s;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    position: relative;
+}
+
+.custom-card-wrapper:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+}
+
+/* FOOTER */
+.landing-footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 40px;
+    margin-top: 50px;
+}
+
+/* WHATSAPP */
+.whatsapp {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    background: #25D366;
+    color: white;
+    font-size: 22px;
+    padding: 15px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+    .header-text h1 { font-size: 32px; }
+    .header-text p { font-size: 15px; }
+    .titulo { font-size: 32px; padding: 40px 0 10px; }
+    nav a { margin: 0 10px; font-size: 13px; }
+    .products-grid { gap: 20px; }
 }

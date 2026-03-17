@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cómo comprar</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial;
+            color: black;
+            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url("img/fondo.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 30px;
+            padding: 20px 60px;
+        }
+
+        .logo-header {
+            width: 170px;
+            height: auto;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 40px;
+            letter-spacing: 3px;
+        }
+
+        /* MENU */
+
+        nav {
+            background: #111;
+            padding: 15px;
+        }
+
+            nav a {
+                color: white;
+                margin: 20px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                nav a:hover {
+                    color: #aaa;
+                }
+
+        /* SECCION COMPRAR */
+
+        .comprar {
+            padding: 60px;
+        }
+
+            .comprar img {
+                width: 90%;
+                max-width: 800px;
+                border-radius: 10px;
+            }
+
+        /* FOOTER */
+
+        footer {
+            background: black;
+            color: white;
+            padding: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <img src="img/logo.png" class="logo-header">
+
+        <div class="header-text">
+            <h1>A PASO FIRME</h1>
+        </div>
+
+    </header>
+
+    <nav>
+
+        <a href="inicio.html">Inicio</a>
+        <a href="index.html">Zapatillas</a>
+        <a href="comprar.html">Cómo comprar</a>
+        <a href="envios.html">Envíos</a>
+
+    </nav>
+
+    <section class="comprar">
+
+        <h2>Cómo comprar</h2>
+
+        <img src="img/comprar.jpg">
+
+    </section>
+
+    <footer>
+
+        <p>Compra mínima 3 pares</p>
+
+    </footer>
+
+</body>
+</html>

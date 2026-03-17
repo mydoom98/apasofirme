@@ -1,177 +1,120 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Product } from '@/types';
+import { useState } from 'react';
 import { ProductCard } from '@/features/products/components/product-card';
 import { Cart } from '@/features/cart/components/cart';
 import { useProducts } from '@/features/products/hooks/use-products';
-import { Search, ShoppingCart, TrendingUp, Users, Award, Zap, Shield } from 'lucide-react';
 import { PromoBanner } from '@/components/ui/promo-banner';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Search, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
-import { Section, SectionHeader } from '@/components/ui/section';
-import { FeatureCard } from '@/components/ui/feature-card';
-import { AnimateIn } from '@/components/ui/animate-in';
 
 export default function Home() {
-  const { products, loading } = useProducts();
-  const [searchTerm, setSearchTerm] = useState('');
+    const { products, loading } = useProducts();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [activeBrand, setActiveBrand] = useState('all');
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    const filteredProducts = products.filter((product) => {
+        const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.category.toLowerCase().includes(searchTerm.toLowerCase());
 
-  const scrollToProducts = () => {
-    const element = document.getElementById('productos');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
+        // Filter by category exactly matching the brand
+        const matchesBrand = activeBrand === 'all' ||
+            product.category.toLowerCase() === activeBrand.toLowerCase();
 
-  return (
-    <div className="w-full min-h-screen bg-black">
-      {/* Hero Section */}
-      <Section className="py-20 md:py-32 relative overflow-hidden">
-        {/* Dynamic Background from Ksyan */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/back.gif"
-            alt="Hero Background"
-            fill
-            className="object-cover"
-            unoptimized
-            priority
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
+        return matchesSearch && matchesBrand;
+    });
 
-        <div className="max-w-5xl mx-auto px-4 w-full">
-          <AnimateIn animation="slide-down" className="text-center mb-8 md:mb-12 relative z-10">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6 text-white tracking-tight leading-[1.1]">
-            Explora Nuestros <span className="text-blue-500">Productos</span>
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto px-4 font-medium leading-relaxed">
-            Los mejores productos digitales del mercado a un solo clic de distancia
-          </p>
+    return (
+        <>
 
-          <div className="max-w-xl md:max-w-2xl mx-auto relative px-4 mb-16">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-              <div className="relative">
-                <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 group-hover:text-blue-500 transition-colors" />
-                <Input
-                  type="text"
-                  placeholder="¿Qué estás buscando hoy?"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-12 md:pl-14 h-14 md:h-16 text-base md:text-lg rounded-full border-2 border-gray-100 focus:border-blue-500 shadow-xl bg-white/80 backdrop-blur-sm transition-all"
-                />
-              </div>
-            </div>
-          </div>
 
-          {/* New Polished Stats Section - Monochromatic Blue Theme */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-5xl mx-auto px-4 mt-12">
-            {[
-              { icon: Zap, value: products.length.toString(), label: "Productos Activos" },
-              { icon: Users, value: "90+", label: "Clientes Felices" },
-              { icon: TrendingUp, value: "150+", label: "Ventas Totales" },
-              { icon: Award, value: "100%", label: "Garantía" }
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center justify-center p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-cyan-500/20 hover:-translate-y-1 transition-all duration-300 group">
-                <div className={`p-2 sm:p-3 rounded-full bg-blue-500/10 mb-2 sm:mb-3 group-hover:scale-110 transition-transform`}>
-                  <stat.icon className={`w-5 h-5 sm:w-6 sm:h-6 text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]`} />
+
+            <h2 className="titulo">ZAPATILLAS</h2>
+
+
+
+            <div className="container-main">
+                <div className="search-area">
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Buscar zapatilla..."
+                    />
                 </div>
-                <span className="text-lg sm:text-2xl md:text-3xl font-black text-white mb-1">{stat.value}</span>
-                <span className="text-xs sm:text-sm font-semibold text-gray-300 uppercase tracking-wide text-center">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-          </AnimateIn>
-        </div>
-      </Section>
 
-      {/* Neon Divider Line */}
-      <div className="relative z-30 h-px bg-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.8)] w-full" />
+                <div className="flex flex-row flex-wrap justify-center items-center gap-4 mt-6 mb-12">
+                    <img
+                        src="/img/nike.png"
+                        className={`w-[90px] h-[90px] object-contain bg-white rounded-2xl p-2 cursor-pointer transition-transform duration-200 hover:scale-110 shadow-md ${activeBrand === 'nike' ? 'scale-110 ring-2 ring-black' : ''}`}
+                        onClick={() => setActiveBrand(activeBrand === 'nike' ? 'all' : 'nike')}
+                        alt="Nike"
+                    />
+                    <img
+                        src="/img/vans.png"
+                        className={`w-[90px] h-[90px] object-contain bg-white rounded-2xl p-2 cursor-pointer transition-transform duration-200 hover:scale-110 shadow-md ${activeBrand === 'vans' ? 'scale-110 ring-2 ring-black' : ''}`}
+                        onClick={() => setActiveBrand(activeBrand === 'vans' ? 'all' : 'vans')}
+                        alt="Vans"
+                    />
+                    <img
+                        src="/img/adidas.png"
+                        className={`w-[90px] h-[90px] object-contain bg-white rounded-2xl p-2 cursor-pointer transition-transform duration-200 hover:scale-110 shadow-md ${activeBrand === 'adidas' ? 'scale-110 ring-2 ring-black' : ''}`}
+                        onClick={() => setActiveBrand(activeBrand === 'adidas' ? 'all' : 'adidas')}
+                        alt="Adidas"
+                    />
+                    <img
+                        src="/img/dc.png"
+                        className={`w-[90px] h-[90px] object-contain bg-white rounded-2xl p-2 cursor-pointer transition-transform duration-200 hover:scale-110 shadow-md ${activeBrand === 'dc' ? 'scale-110 ring-2 ring-black' : ''}`}
+                        onClick={() => setActiveBrand(activeBrand === 'dc' ? 'all' : 'dc')}
+                        alt="DC"
+                    />
+                </div>
 
+                {loading ? (
+                    <div className="text-center py-12">
+                        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                        <p className="mt-4 text-text-muted">Cargando catálogo...</p>
+                    </div>
+                ) : filteredProducts.length === 0 ? (
+                    <div className="text-center py-12">
+                        <ShoppingCart className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                        <p className="text-text-muted text-lg">
+                            {searchTerm ? 'No se encontraron productos con ese término' : 'No hay productos disponibles'}
+                        </p>
+                    </div>
+                ) : (
+                    <div className="products-grid">
+                        {filteredProducts.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+                )}
+            </div>
+            <PromoBanner />
 
+            <footer className="landing-footer">
+                <p>&copy; {new Date().getFullYear()} A PASO FIRME. Todos los derechos reservados.</p>
+                <a
+                    href="https://wa.me/51917024847?text=Hola,%20vi%20tu%20u%20web%20y%20me%20interesa%20crear%20mi%20página"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'var(--secondary)', textDecoration: 'none', marginTop: '10px', display: 'inline-block' }}
+                >
+                    ¿Quieres que cree tu página? Click aquí
+                </a>
+            </footer>
 
-      {/* Catálogo con ajuste de espaciado top para el banner */}
-      <Section id="productos" className="pt-20 bg-black min-h-screen relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-black to-black pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 w-full relative z-10">
-          <SectionHeader
-            className="relative z-10"
-            titleClassName="text-white"
-            descriptionClassName="text-gray-400"
-            title="Nuestros Productos"
-            description="Elige entre nuestros mejores productos"
-          />
-
-        {loading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            <p className="mt-4 text-gray-600">Cargando catálogo...</p>
-          </div>
-        ) : filteredProducts.length === 0 ? (
-          <div className="text-center py-12">
-            <ShoppingCart className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-            <p className="text-gray-600 text-lg">
-              {searchTerm ? 'No se encontraron productos con ese término' : 'No hay productos disponibles'}
-            </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProducts.map((product, index) => (
-              <AnimateIn key={product.id} animation="scale-in" delay={index * 0.05}>
-                <ProductCard product={product} />
-              </AnimateIn>
-            ))}
-          </div>
-        )}
-        </div>
-      </Section>
-
-      {/* Tilted Banner Strip - Moved Below Products */}
-      <div className="relative z-20 -my-12 transform rotate-0 scale-100 sm:-rotate-1 sm:scale-110">
-        <PromoBanner />
-      </div>
-
-      {/* CTA Footer Dark Mode - Blue Theme */}
-      <Section className="mt-32 py-24 bg-black text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/40 to-transparent pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-4 w-full">
-          <AnimateIn animation="fade-in" className="text-center relative z-10">
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">
-              ¿Listo para <span className="text-blue-500">Comprar</span> ?
-            </h2>
-            <p className="text-gray-300 mb-10 text-lg md:text-xl max-w-2xl mx-auto">
-              Realiza tu compra ahora y recibe tu producto al instante.
-            </p>
-            <Button
-              onClick={scrollToProducts}
-              className="bg-blue-600 text-white hover:bg-blue-500 px-10 py-6 text-xl font-bold rounded-full shadow-[0_0_35px_rgba(37,99,235,0.6)] hover:shadow-[0_0_60px_rgba(37,99,235,1)] transition-all duration-300 transform hover:scale-110 border-2 border-blue-400"
+            <a
+                className="fixed bottom-[100px] right-6 bg-[#25D366] text-white text-[22px] w-14 h-14 rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.3)] hover:bg-[#20b858] transition-colors z-50 flex items-center justify-center"
+                href="https://wa.me/5493758434182"
+                target="_blank"
+                rel="noopener noreferrer"
             >
-              Ver Catálogo
-            </Button>
-          </AnimateIn>
-        </div>
-      </Section>
+                <i className="fa-brands fa-whatsapp text-[28px]"></i>
+            </a>
 
-      {/* Developer Footer */}
-      <footer className="w-full py-12 bg-black border-t-2 border-blue-500 text-center relative z-20 shadow-[0_-10px_50px_rgba(59,130,246,0.3)]">
-        <a
-          href="https://wa.me/51917024847?text=Hola,%20vi%20tu%20u%20web%20y%20me%20interesa%20crear%20mi%20página"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-blue-400 font-medium transition-colors text-sm md:text-base group"
-        >
-          ¿Quieres que cree tu página? <span className="text-blue-500 font-bold ml-1 group-hover:text-blue-300 transition-colors hover:underline decoration-blue-500/50 underline-offset-4">Click aquí</span>
-        </a>
-      </footer>
-
-      <Cart />
-    </div >
-  );
+            <Cart />
+        </>
+    );
 }

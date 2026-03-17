@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Envíos - A PASO FIRME</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            color: black;
+            background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url("img/fondo.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        header {
+            background: black;
+            color: white;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+            header img {
+                height: 60px; /* Ajusta el tamaño del logo */
+                border-radius: 5px; /* opcional, para que tenga bordes redondeados */
+            }
+
+        nav {
+            background: #111;
+            padding: 15px;
+        }
+
+            nav a {
+                color: white;
+                margin: 20px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                nav a:hover {
+                    color: #f4f4f4;
+                }
+
+        .envios {
+            padding: 60px 20px;
+        }
+
+            .envios h2 {
+                margin-bottom: 30px;
+            }
+
+            .envios img {
+                width: 90%;
+                max-width: 800px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+        footer {
+            background: black;
+            color: white;
+            padding: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .envios {
+                padding: 40px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="img/logo.png" alt="Logo A PASO FIRME">
+        <h1>A PASO FIRME</h1>
+    </header>
+
+    <nav>
+        <a href="inicio.html">Inicio</a>
+        <a href="index.html">Zapatillas</a>
+        <a href="comprar.html">Cómo comprar</a>
+        <a href="envios.html">Envíos</a>
+    </nav>
+
+    <section class="envios">
+        <h2>Envíos</h2>
+        <img src="img/envios.jpg" alt="Proceso de envío de productos">
+    </section>
+
+    <footer>
+        <p>Envíos a todo el país</p>
+    </footer>
+
+</body>
+</html>

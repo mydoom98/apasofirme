@@ -38,7 +38,7 @@ export default function AdminPage() {
     stock: 0,
     imageUrl: '',
     category: '',
-    whatsappNumber: '',
+    whatsappNumber: '+5493758434182',
   });
 
   useEffect(() => {
@@ -151,7 +151,7 @@ export default function AdminPage() {
         stock: 0,
         imageUrl: '',
         category: '',
-        whatsappNumber: '',
+        whatsappNumber: '+5493758434182',
       });
       loadData();
     } catch (error) {
@@ -268,7 +268,7 @@ export default function AdminPage() {
   }
 
   // Validar que solo admin@admin.com pueda acceder
-  const ADMIN_EMAIL = 'admin@admin.com';
+  const ADMIN_EMAIL = 'mydoom@gmail.com';
   if (user.email !== ADMIN_EMAIL) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center p-4">
@@ -404,12 +404,17 @@ export default function AdminPage() {
                       </div>
                     )}
                   </div>
-                  <Input
-                    placeholder="Categoría"
+                  <select
                     value={newProduct.category}
                     onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
-                    className="text-white bg-black/40 border-white/10 focus:border-blue-500 placeholder-gray-500"
-                  />
+                    className="flex h-10 w-full rounded-md border border-white/10 bg-black/40 px-3 py-2 text-sm text-white focus:border-blue-500 focus:outline-none"
+                  >
+                    <option value="" disabled>Seleccionar marca / categoría</option>
+                    <option value="nike">Nike</option>
+                    <option value="vans">Vans</option>
+                    <option value="adidas">Adidas</option>
+                    <option value="dc">DC</option>
+                  </select>
                   <Input
                     placeholder="WhatsApp (ej: 51937074085)"
                     value={newProduct.whatsappNumber}

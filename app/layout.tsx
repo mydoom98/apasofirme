@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "PEDRO SMS - Tienda de Tarjetas",
-  description: "Compra las mejores tarjetas de juego",
+  title: "A PASO FIRME - Tienda de Zapatillas",
+  description: "Catálogo mayorista de zapatillas",
 };
 
 export default function RootLayout({
@@ -19,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="overflow-x-hidden">
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+      </head>
       <body className={`${inter.className} m-0 p-0 overflow-x-hidden`}>
         <Navbar />
         {children}

@@ -77,7 +77,7 @@ export function PurchaseModal({ isOpen, product, onClose }: PurchaseModalProps) 
             // Esperar 2 segundos y redirigir a WhatsApp
             setTimeout(() => {
                 const message = `Hola, me interesa comprar: ${product.name} por ${formatPrice(product.price)}`;
-                const phoneNumber = product.whatsappNumber || '51937074085'; // Fallback por seguridad
+                const phoneNumber = product.whatsappNumber || '5493758434182'; // Fallback por seguridad
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
                 onClose();
